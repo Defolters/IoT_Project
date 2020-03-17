@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="3dp"
+    android:clipToPadding="false"
+    android:paddingLeft="8dp"
+    tools:ignore="RtlHardcoded,RtlSymmetry">
+
+    <TextView
+        android:id="@+id/chart_popup_source_percent"
+        android:layout_marginLeft="-8sp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="right"
+        android:minWidth="40sp"
+        android:paddingRight="8dp"
+        android:textSize="13sp"
+        tools:text="30%" />
+
+    <TextView
+        android:id="@+id/chart_popup_source_name"
+        android:paddingRight="8dp"
+        android:textSize="13sp"
+        tools:text="Joined" />
+
+    <TextView
+        android:id="@+id/chart_popup_source_value"
+        android:layout_marginRight="8sp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="right"
+        android:textSize="13sp"
+        tools:text="122"
+        tools:textColor="@color/primaryDark" />
+
+</TableRow>

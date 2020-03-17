@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/blue</color>
+    <color name="colorPrimaryDark">@color/very_dark_blue</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="blue">#2482C7</color>
+    <color name="white">#FFFF</color>
+    <color name="black">#000000</color>
+    <color name="dark_blue">#265291</color>
+    <color name="very_dark_blue">#0848A4</color>
+    <color name="background">#FFFFFF</color>
+
+    <color name="status_bar">#FFFFFF</color>
+    <color name="action_bar">#FFFFFF</color>
+    <color name="nav_bar">#FFFFFF</color>
+
+    <color name="window">#F0F0F0</color>
+
+    <color name="text">#000000</color>
+    <color name="text_highlight">#108BE3</color>
+
+    <color name="chart_guides">#1A182D3B</color>
+    <color name="chart_labels">#80252529</color>
+    <color name="chart_selection_mask">#80FFFFFF</color>
+
+    <color name="finder_foreground">#99E3EFFA</color>
+    <color name="finder_frame">#8086A9C4</color>
+
+    <color name="popup">#E0FFFFFF</color>
+
+
+    <!-- Night theme -->
+
+    <color name="status_bar_night">#242f3e</color>
+    <color name="action_bar_night">#242f3e</color>
+    <color name="nav_bar_night">#1b2433</color>
+
+    <color name="window_night">#1b2433</color>
+    <color name="background_night">#242f3e</color>
+
+    <color name="text_night">#FFFFFF</color>
+    <color name="text_highlight_night">#48AAF0</color>
+
+    <color name="chart_guides_night">#1AFFFFFF</color>
+    <color name="chart_labels_night">#80ECF2F8</color>
+    <color name="chart_selection_mask_night">#80242F3E</color>
+
+    <color name="finder_foreground_night">#99304259</color>
+    <color name="finder_frame_night">#806F899E</color>
+
+    <color name="popup_night">#E01c2533</color>
+</resources>

@@ -1,0 +1,115 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/very_dark_blue</item>
+    </style>
+
+    <style name="Chart" />
+
+    <style name="Chart.Layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+<!--        <item name="android:layout_marginBottom">24dp</item>-->
+        <item name="android:background">@color/background</item>
+<!--        <item name="android:elevation" tools:targetApi="21">2dp</item>-->
+    </style>
+
+    <style name="Chart.TitlesLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:baselineAligned">true</item>
+    </style>
+
+    <style name="Chart.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">32sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Chart.Range" parent="Chart.Title">
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="Chart.View">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">312dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">12dp</item>
+
+        <item name="chart_backgroundHint">@color/background</item>
+        <item name="chart_guidesColor">@color/chart_guides</item>
+        <item name="chart_guidesNumber">6</item>
+        <item name="chart_guidesWidth">1dp</item>
+        <item name="chart_labelsColor">@color/chart_labels</item>
+        <item name="chart_labelsDotColor">@color/chart_guides</item>
+        <item name="chart_labelsTextSize">12sp</item>
+        <item name="chart_lineWidth">1.8dp</item>
+        <item name="chart_pointRadius">4dp</item>
+        <item name="chart_selectionColor">@color/chart_guides</item>
+        <item name="chart_selectionWidth">1.5dp</item>
+        <item name="chart_pie_minTextSize">14sp</item>
+        <item name="chart_pie_maxTextSize">26sp</item>
+    </style>
+
+    <style name="Chart.Finder">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingBottom">1dp</item>
+
+        <item name="chart_backgroundHint">@color/background</item>
+        <item name="chart_foregroundColor">@color/finder_foreground</item>
+        <item name="chart_frameColor">@color/finder_frame</item>
+        <item name="chart_lineWidth">1dp</item>
+    </style>
+
+    <style name="Chart.Sources">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+
+    <style name="Chart.Popup">
+        <item name="android:layout_width">164sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/popup_background</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">6dp</item>
+    </style>
+
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/drawable_bottomsheet_background</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+</resources>
