@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">HomeApp</string>
+
+    <string name="all">All</string>
+    <string name="zoom_out">Zoom Out</string>
+
+    <string name="menu_night_mode">Toggle night mode</string>
+
+    <string name="charts_title">Statistics</string>
+    <string name="chart_title_followers">Followers</string>
+    <string name="chart_title_interactions">Interactions</string>
+    <string name="chart_title_messages">Messages</string>
+    <string name="chart_title_views">Views</string>
+    <string name="chart_title_apps">Apps</string>
+
+    <string name="bottom_sheet_option_heading">Settings</string>
+    <string name="bottom_sheet_option_camera">Notifications</string>
+    <string name="bottom_sheet_option_gallery">Frequency</string>
+    <string name="bottom_sheet_option_remove_photo">Remove Photo</string>
+</resources>

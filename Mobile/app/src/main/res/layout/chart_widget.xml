@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:orientation="vertical"
+    tools:ignore="ContentDescription,RtlHardcoded">
+
+    <FrameLayout
+        android:id="@+id/charts_content_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/chart_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/Chart.TitlesLayout">
+
+                <TextView
+                    android:id="@+id/chart_title"
+                    style="@style/Chart.Title"
+                    tools:text="Chart" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/chart_range"
+                    style="@style/Chart.Range"
+                    tools:text="1 April 2019 - 31 April 2019" />
+
+            </LinearLayout>
+
+            <io.github.defolters.homeapp.widget.ChartView
+                android:id="@+id/chart_view"
+                style="@style/Chart.View" />
+
+
+            <io.github.defolters.homeapp.widget.ChartFinderView
+                android:id="@+id/chart_finder_view"
+                style="@style/Chart.Finder" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/chart_details_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <LinearLayout
+                style="@style/Chart.TitlesLayout"
+                android:layout_marginLeft="8dp">
+
+                <TextView
+                    android:id="@+id/chart_details_title"
+                    style="@style/Chart.Title"
+                    android:background="?android:selectableItemBackground"
+                    android:drawableLeft="@drawable/ic_zoom_out"
+                    android:drawablePadding="4dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/zoom_out"
+                    tools:drawableTint="@color/text_highlight"
+                    tools:textColor="@color/text_highlight" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/chart_details_range"
+                    style="@style/Chart.Range"
+                    tools:text="15 April 2019" />
+
+            </LinearLayout>
+
+            <io.github.defolters.homeapp.widget.ChartView
+                android:id="@+id/chart_details_view"
+                style="@style/Chart.View" />
+
+            <io.github.defolters.homeapp.widget.ChartFinderView
+                android:id="@+id/chart_details_finder_view"
+                style="@style/Chart.Finder" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <io.github.defolters.homeapp.widgets.FlowLineLayout
+        android:id="@+id/chart_sources"
+        style="@style/Chart.Sources" />
+
+</LinearLayout>
