@@ -87,19 +87,22 @@ class MainFragment : Fragment() {
             isUpdating = !isUpdating
         }
 
-        waveHeader.setStartColor(R.color.colorPrimary);
-        waveHeader.setCloseColor(R.color.colorPrimaryDark);
-        waveHeader.setColorAlpha(.5f);
+//        waveHeader.setStartColor(R.color.colorPrimary);
+//        waveHeader.setCloseColor(R.color.colorPrimaryDark);
+//        waveHeader.setColorAlpha(.5f);
+//
+//        waveHeader.setWaveHeight(50);
+//        waveHeader.setGradientAngle(360);
+//        waveHeader.setProgress(.8f);
+//        waveHeader.setVelocity(1f);
+//        waveHeader.setScaleY(-1f);
+//
+//        waveHeader.setWaves("PairWave");
+//
+//        waveHeader.start();
 
-        waveHeader.setWaveHeight(50);
-        waveHeader.setGradientAngle(360);
-        waveHeader.setProgress(.8f);
-        waveHeader.setVelocity(1f);
-        waveHeader.setScaleY(-1f);
-
-        waveHeader.setWaves("PairWave");
-
-        waveHeader.start();
+        multiWaveHeader.waveHeight  = 20
+        multiWaveHeader.velocity = 1.5f
     }
 
     inner class Adapter : FragmentStateAdapter(this) {
