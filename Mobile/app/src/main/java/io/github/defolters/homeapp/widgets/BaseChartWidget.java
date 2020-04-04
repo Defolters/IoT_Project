@@ -39,7 +39,7 @@ public abstract class BaseChartWidget extends FrameLayout {
     static final long ANIMATION_DURATION = 250L;
     private static final boolean USE_SYSTEM_ANIMATION = true;
 
-    final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+    final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Moscow"));//"UTC"));
 
     final Holder main;
     final Holder details;

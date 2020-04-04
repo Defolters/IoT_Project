@@ -32,9 +32,9 @@ public class Chart {
     public static class Source {
         public final String name;
         public final int color;
-        public final int[] y;
+        public final float[] y;
 
-        public Source(String name, int color, int[] y) {
+        public Source(String name, int color, float[] y) {
             this.name = name;
             this.color = color;
             this.y = y;
@@ -44,7 +44,7 @@ public class Chart {
             return new Source(name, this.color, this.y);
         }
 
-        public Source setY(int[] y) {
+        public Source setY(float[] y) {
             return new Source(this.name, this.color, y);
         }
     }

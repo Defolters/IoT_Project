@@ -108,7 +108,7 @@ public class PopupAdapter extends ChartView.PopupAdapterX<PopupAdapter.ViewHolde
         for (int i = 0, size = chart.sources.length; i < size; i++) {
             final ObjectAnimator anim = holder.itemsAnim[i];
             final Chart.Source source = chart.sources[i];
-            final int value = source.y[index];
+            final float value = source.y[index];
 
             if (colorsSet) {
                 holder.items[i].setTextColor(textColor);

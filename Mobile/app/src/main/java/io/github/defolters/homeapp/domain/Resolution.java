@@ -6,7 +6,8 @@ import java.util.concurrent.TimeUnit;
 public enum Resolution {
     DAY(TimeUnit.DAYS.toMillis(1L)),
     HOUR(TimeUnit.HOURS.toMillis(1L)),
-    FIVE_MIN(TimeUnit.MINUTES.toMillis(5L));
+    FIVE_MIN(TimeUnit.MINUTES.toMillis(5L)),
+    MIN(TimeUnit.MINUTES.toMillis(1L));
 
     public final long duration;
 
@@ -30,6 +31,9 @@ public enum Resolution {
                 break;
             case FIVE_MIN:
                 cal.add(Calendar.MINUTE, 5 * amount);
+                break;
+            case MIN:
+                cal.add(Calendar.MINUTE, amount);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown type: " + this);

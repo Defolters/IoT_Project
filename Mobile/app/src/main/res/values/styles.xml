@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -6,6 +6,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/blue</item>
         <item name="colorAccent">@color/very_dark_blue</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="BrandedSwitch" parent="AppTheme">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
     </style>
 
     <style name="Chart" />
@@ -13,9 +18,9 @@
     <style name="Chart.Layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-<!--        <item name="android:layout_marginBottom">24dp</item>-->
+        <!--        <item name="android:layout_marginBottom">24dp</item>-->
         <item name="android:background">@color/background</item>
-<!--        <item name="android:elevation" tools:targetApi="21">2dp</item>-->
+        <!--        <item name="android:elevation" tools:targetApi="21">2dp</item>-->
     </style>
 
     <style name="Chart.TitlesLayout">

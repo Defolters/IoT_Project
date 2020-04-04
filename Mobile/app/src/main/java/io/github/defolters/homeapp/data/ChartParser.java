@@ -58,10 +58,10 @@ class ChartParser {
         List<Chart.Source> sources = new ArrayList<>();
 
         for (String yName : yNames) {
-            int[] yValues = null;
+            float[] yValues = null;
             for (Object[] values : columns) {
                 if (yName.equals(values[0])) {
-                    yValues = getIntValues(values);
+                    yValues = getFloatValues(values);
                 }
             }
             checkNotNull(yValues);
@@ -151,6 +151,20 @@ class ChartParser {
         int[] result = new int[values.length - 1];
         for (int i = 1, size = values.length; i < size; i++) {
             result[i - 1] = (int) values[i];
+        }
+        return result;
+    }
+
+    private static float[] getFloatValues(Object[] values) {
+        float[] result = new float[values.length - 1];
+        for (int i = 1, size = values.length; i < size; i++) {
+            if (values[i] instanceof Integer) {
+                result[i - 1] = ((int) values[i])*1f;
+            } else if (values[i] instanceof Double){
+                result[i - 1] = (float)((double) values[i])*1f;
+            } else {
+                result[i - 1] = (float)((double) values[i])*1f;
+            }
         }
         return result;
     }

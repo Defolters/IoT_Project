@@ -43,7 +43,7 @@ public class LabelsHelper {
         final long fromDate = chart.x[0];
         final long toDate = chart.x[size - 1];
         final Resolution resolution = chart.resolution;
-        final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        final Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Moscow"));//"UTC"));
 
         // If grouping is not specified or chart range does not include at least 1 group
         // then we'll return an array of evenly distributed levels.
@@ -81,7 +81,7 @@ public class LabelsHelper {
         // We took extra groups starts in the start and in the end when computed
         // 'fromDateExt' and 'toDateExt', but they should not be considered.
         // Always > 0 since we already checked that we have at least 1 group (see above).
-        final int groupsSize = groupsSizeExt - 2;
+        final int groupsSize = groupsSizeExt - 1;
 
         // Evenly distributing groups starting points, as if there are no other chart points
         final float[] groupsLevels = computeEvenlyDistributedLevels(groupsSize);

@@ -20,4 +20,7 @@
 
     <dimen name="md_bottom_sheet_separator_top_margin">7dp</dimen>
 
+    <dimen name="text_size">24sp</dimen>
+    <dimen name="sign_size">15sp</dimen>
+
 </resources>

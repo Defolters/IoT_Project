@@ -31,13 +31,13 @@ class LinesPainter extends Painter {
             final int size = chart.x.length;
             final int sourcesCount = chart.sources.length;
 
-            final int[] max = new int[sourcesCount];
-            int totalMax = Integer.MIN_VALUE;
+            final float[] max = new float[sourcesCount];
+            float totalMax = Integer.MIN_VALUE;
 
             for (int l = 0; l < sourcesCount; l++) {
                 final Chart.Source source = chart.sources[l];
 
-                int maxValue = Integer.MIN_VALUE;
+                float maxValue = Float.MIN_VALUE;
 
                 for (int i = 0; i < size; i++) {
                     maxValue = maxValue < source.y[i] ? source.y[i] : maxValue;
@@ -186,7 +186,7 @@ class LinesPainter extends Painter {
 
     private void drawAsPath(
             Canvas canvas, Matrix matrix,
-            int[] values, float valueScale,
+            float[] values, float valueScale,
             int from, int to
     ) {
         path.reset();
@@ -207,7 +207,7 @@ class LinesPainter extends Painter {
 
     private void drawAsLines(
             Canvas canvas, Matrix matrix,
-            int[] values, float valueScale,
+            float[] values, float valueScale,
             int from, int to
     ) {
         final float[] points = pathsPoints;
@@ -228,7 +228,7 @@ class LinesPainter extends Painter {
     }
 
 
-    private void drawSelected(Canvas canvas, Matrix matrix, int x, int y, float yScale) {
+    private void drawSelected(Canvas canvas, Matrix matrix, int x, float y, float yScale) {
         float posX = ChartMath.mapX(matrix, x);
         float posY = ChartMath.mapY(matrix, y * yScale);
 

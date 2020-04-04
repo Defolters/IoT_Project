@@ -7,7 +7,11 @@ import android.os.Looper;
 import android.util.Log;
 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
@@ -32,7 +36,7 @@ public class ChartsLoader {
     private static final String DATE_FORMAT = "yyyy-MM";
     private static final String DAY_FILE_FORMAT = "dd'.json'";
 
-    private static final TimeZone TIME_ZONE = TimeZone.getTimeZone("UTC");
+    private static final TimeZone TIME_ZONE = TimeZone.getTimeZone("Europe/Moscow");//"UTC");
 
 
     private static final long LOADING_DELAY = 100L;
@@ -66,7 +70,7 @@ public class ChartsLoader {
         }
 
         for (Type type : Type.values()) {
-            final Chart chart = loadChart(context, type);
+            final Chart chart = loadChartOverview(context, type);
             fixSources(chart, type);
             cache.put(type, chart);
         }
@@ -77,6 +81,13 @@ public class ChartsLoader {
     private static Chart loadChart(Context appContext, Type type) throws Exception {
         final String fileName = BASE_DIR + "/" + type.id + "/" + OVERVIEW_FILE;
         final String json = readAsset(appContext.getAssets(), fileName);
+        return ChartParser.parse(type.id, type.mainResolution, json);
+    }
+
+    private static Chart loadChartOverview(Context appContext, Type type) throws Exception {
+        final String fileName = "data" + "/" + type.id + "/" + OVERVIEW_FILE;
+        final File file = new File(appContext.getFilesDir(), fileName);
+        final String json = getStringFromFile(file);
         return ChartParser.parse(type.id, type.mainResolution, json);
     }
 
@@ -103,9 +114,11 @@ public class ChartsLoader {
         final Calendar calendar = Calendar.getInstance(TIME_ZONE);
         calendar.setTimeInMillis(date);
 
+        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),0,0,0);
+
         // Loading data for X days with requested day in the middle.
         // Note, that we need to load one more day in the end to get missing last value.
-        calendar.add(Calendar.DAY_OF_MONTH, -days / 2);
+//        calendar.add(Calendar.DAY_OF_MONTH, -days / 2);
         final long from = calendar.getTimeInMillis();
 
         calendar.add(Calendar.DAY_OF_MONTH, days);
@@ -118,9 +131,9 @@ public class ChartsLoader {
             calendar.setTimeInMillis(from);
 
             final List<Chart> charts = new ArrayList<>(days);
-            for (int i = 0; i <= days; i++) {
+            for (int i = 0; i <= 0; i++) {
                 try {
-                    charts.add(loadChartDetails(appContext, type, calendar.getTimeInMillis()));
+                    charts.add(loadChartDetailsFile(appContext, type, calendar.getTimeInMillis()));//
                 } catch (Exception ignored) {
                     // No details for the day, just skipping it
                 }
@@ -151,6 +164,23 @@ public class ChartsLoader {
         return ChartParser.parse(type.id, type.detailsResolution, json);
     }
 
+    private static Chart loadChartDetailsFile(Context appContext, Type type, long date)
+            throws Exception {
+        final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
+        dateFormat.setTimeZone(TIME_ZONE);
+
+        final SimpleDateFormat dayFileFormat = new SimpleDateFormat(DAY_FILE_FORMAT, Locale.US);
+        dayFileFormat.setTimeZone(TIME_ZONE);
+
+        final String fileName = "data" + "/" + type.id
+                + "/" + dateFormat.format(date) + "/" + dayFileFormat.format(date);
+
+        final File file = new File(appContext.getFilesDir(), fileName);
+        final String json = getStringFromFile(file);
+        Log.d("TAG", "json detail" +json);
+        return ChartParser.parse(type.id, type.detailsResolution, json);
+    }
+
     private static Chart mergeCharts(List<Chart> charts) {
         if (charts.isEmpty()) {
             return null;
@@ -164,14 +194,14 @@ public class ChartsLoader {
         }
 
         final long[] x = new long[size];
-        final int[][] y = new int[first.sources.length][size];
+        final float[][] y = new float[first.sources.length][size];
 
         int pos = 0;
         for (Chart chart : charts) {
             System.arraycopy(chart.x, 0, x, pos, chart.x.length);
 
             for (int s = 0; s < chart.sources.length; s++) {
-                final int[] sourceY = chart.sources[s].y;
+                final float[] sourceY = chart.sources[s].y;
                 System.arraycopy(sourceY, 0, y[s], pos, sourceY.length);
             }
             pos += chart.x.length;
@@ -211,7 +241,7 @@ public class ChartsLoader {
         final Chart.Source[] sources = new Chart.Source[sourcesCount];
         for (int s = 0; s < sourcesCount; s++) {
             final Chart.Source source = chart.sources[s];
-            final int[] resultY = new int[toInd - fromInd + 1];
+            final float[] resultY = new float[toInd - fromInd + 1];
             System.arraycopy(source.y, fromInd, resultY, 0, resultY.length);
 
             sources[s] = source.setY(resultY);
@@ -254,23 +284,13 @@ public class ChartsLoader {
     }
 
     public enum Type {
-        // Line: Overview: by day. Details: 1 day by hour x 7(8?).
-        FOLLOWERS(1, Resolution.DAY, Resolution.HOUR, null),
+        TEMPERATURE(1, Resolution.DAY, Resolution.MIN, null),
 
-        // Line: Overview: by day. Details: 1 day by hour x 7(8?).
-        INTERACTIONS(2, Resolution.DAY, Resolution.HOUR, null),
+        HUMIDITY(2, Resolution.DAY, Resolution.MIN, null),
 
-        // Overview: Bars by day. Details: Bars 1 day by hour x 7(8?).
-        MESSAGES(3, Resolution.DAY, Resolution.HOUR, new String[] {
-                "Text", "Photo", "Audio", "Sticker", "Video", "Document", "Location"
-        }),
+        CO2(3, Resolution.DAY, Resolution.HOUR, null);
 
-        // Overview: Bars by day. Details: Line 1 day by hour x 3 for 0, -1, -7.
-        VIEWS(4, Resolution.DAY, Resolution.FIVE_MIN, null),
 
-        // Overview: Percentage by day. Details: Pie + Area by day x 7.
-        APPS(5, Resolution.DAY, null,
-                new String[] { "Android", "iPhone", "OSX", "Web", "Desktop", "Other" });
 
         final int id;
         final Resolution mainResolution;
@@ -284,6 +304,26 @@ public class ChartsLoader {
             this.detailsResolution = detailsResolution;
             this.namesOverride = namesOverride;
         }
+    }
+
+    public static String convertStreamToString(InputStream is) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        reader.close();
+        return sb.toString();
+    }
+
+    public static String getStringFromFile(File file) throws Exception {
+
+        FileInputStream fin = new FileInputStream(file);
+        String ret = convertStreamToString(fin);
+        //Make sure you close all streams.
+        fin.close();
+        return ret;
     }
 
 }

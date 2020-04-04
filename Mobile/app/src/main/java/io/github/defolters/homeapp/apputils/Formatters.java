@@ -11,7 +11,7 @@ import java.util.Locale;
 
 public class Formatters {
 
-    private static final String timeZone = "UTC";
+    private static final String timeZone = "Europe/Moscow";//"UTC";
 
     private final Context context;
     private final DecimalFormat yFormat;
@@ -27,11 +27,11 @@ public class Formatters {
 
 
     @SuppressWarnings("unused")
-    public String formatNumber(long value, int max) {
+    public String formatNumber(float value, int max) {
         return yFormat.format(value);
     }
 
-    public String formatNumberAbbreviate(int value, long max) {
+    public String formatNumberAbbreviate(float value, long max) {
         if (value == 0) {
             return "0";
         } else if (max >= 10_000_000) {

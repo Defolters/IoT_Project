@@ -58,7 +58,7 @@ public class ChartFinderView extends BaseChartView {
     private int maxGroupsCount;
     private int initialGroupsCount;
     private long initialDate;
-    private final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+    private final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Moscow"));//"UTC"));
 
 
     public ChartFinderView(Context context, AttributeSet attrs) {
@@ -121,7 +121,7 @@ public class ChartFinderView extends BaseChartView {
             final Chart.Source[] sources = new Chart.Source[chart.sources.length];
 
             for (int i = 0; i < sources.length; i++) {
-                final int[] y = Arrays.copyOf(chart.sources[i].y, newSize);
+                final float[] y = Arrays.copyOf(chart.sources[i].y, newSize);
                 sources[i] = chart.sources[i].setY(y);
             }
 
